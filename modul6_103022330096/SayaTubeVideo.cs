@@ -16,14 +16,52 @@ namespace modul6_103022330096
 
         public SayaTubeVideo(String judul) 
         {
-            this.title = judul;
-            this.id = rand.Next(10000, 99999);
-            this.playCount = 0;
+            try
+            {
+                if (judul == null)
+                {
+                    throw new ArgumentException("Judul tidak boleh kosong.");
+                }
+                if (judul.Length > 200)
+                {
+                    throw new ArgumentException("Judul tidak boleh lebih dari 200 karakter.");
+                }
+                
+                this.title = judul;
+                this.id = rand.Next(10000, 99999);
+                this.playCount = 0;
+            } catch (ArgumentException ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            
         }
 
         public void IncreasePlayCount(int angka)
         {
-            this.playCount += angka;
+            try
+            {
+                if (angka > 25000000)
+                {
+                    throw new ArgumentException("Penambahan play count tidak boleh lebih dari 25000000 dalam sekali penambahan.");
+                }
+                if (angka < 0)
+                {
+                    throw new ArgumentException("Penambahan play count tidak boleh negatif.");
+                }
+
+                checked
+                {
+                    this.playCount += angka;
+                }
+                
+            } catch (ArgumentException ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            } catch (OverflowException)
+            {
+                Console.WriteLine("Error: Terjadi Overflow saat menambah play count.");
+            }
         }
 
         public void PrintVideoDetails() 

@@ -66,5 +66,24 @@ class Program
 
         //print all video
         userRaka.PrintAllVideoPlaycount();
+
+        //judul film > 200 karakter
+        SayaTubeVideo film11 = new SayaTubeVideo("11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
+        //judul film null
+        string judulNull = null;
+        SayaTubeVideo film12 = new SayaTubeVideo(judulNull);
+        //penambahan playcount > 25000000
+        SayaTubeVideo film13 = new SayaTubeVideo("film13");
+        film13.IncreasePlayCount(25000001);
+        //penambahan negatif
+        film13.IncreasePlayCount(-13);
+        //username > 100 karakter
+        SayaTubeUser user2 = new SayaTubeUser("1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
+        //username null
+        string userNull = null;
+        SayaTubeUser user3 = new SayaTubeUser(userNull);
+        //penambahan video null
+        SayaTubeVideo filmNull = null;
+        userRaka.AddVideo(filmNull);
     }
 }

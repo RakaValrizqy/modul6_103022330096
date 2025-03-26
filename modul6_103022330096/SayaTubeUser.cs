@@ -16,9 +16,25 @@ namespace modul6_103022330096
 
         public SayaTubeUser(string username) 
         {
-            this.username = username;
-            this.id = rand.Next(10000, 99999);
-            this.uploadedvideos = new List<SayaTubeVideo>();
+            try
+            {
+                if (username == null)
+                {
+                    throw new ArgumentException("Username tidak boleh kosong.");
+                }
+                if (username.Length > 100)
+                {
+                    throw new ArgumentException("Username tidak boleh lebih dari 100 karakter.");
+                }
+                
+                this.username = username;
+                this.id = rand.Next(10000, 99999);
+                this.uploadedvideos = new List<SayaTubeVideo>();
+            } catch (ArgumentException ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            
         }
 
         public int GetTotalVideoPlayCount()
@@ -33,7 +49,19 @@ namespace modul6_103022330096
 
         public void AddVideo(SayaTubeVideo stv) 
         {
-            this.uploadedvideos.Add(stv);
+            try
+            {
+                if (stv == null)
+                {
+                    throw new ArgumentException("Video kosong.");
+                }
+                this.uploadedvideos.Add(stv);
+
+            } catch (ArgumentException ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            
         }
 
         public void PrintAllVideoPlaycount() 
